@@ -2,7 +2,7 @@
 Welcome to Stupid Hackathon Thailand #6, 1st challenge, **Beyond the Canvas**.
 
 [![Griseo](https://user-images.githubusercontent.com/35027979/173251592-43b616ed-fff2-43f9-97ee-00c7df3e02c9.jpeg)](https://youtu.be/qTx2D1jgv_s)
-###### (This challenge is themed after "Griseo", a character from Honkai Impact 3rd, UWOUGHHHHHHHHHHHHHHHHHHH!!! CUTE AND FUNNY!!! 😭😭😭😭😭😭😭)
+###### (This challenge is themed after "Griseo", a character from Honkai Impact 3rd, UWOUGHHHHHHHHHHH!!! CUTE AND FUNNY!!! 😭😭😭😭😭)
 
 In this challenge, you are tasks to answer 1 of the 10 questions you're confident in the most.
 But please note that, these questions is well curated, and required a lot of creativity to complete one.
