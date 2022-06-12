@@ -79,26 +79,31 @@ const main = async () => {
 
     console.clear()
 
-    console.log('Welcome to 1st Stupid Hackathon Thailand 1st Challenge')
+    console.log('')
+    console.log(
+        `Welcome to 1st ${c.cyan.bold(
+            'Stupid Hackathon Thailand #6'
+        )} Challenge`
+    )
     console.log('')
     console.log('The rule is simple.')
-    console.log('')
     console.log("There's total of 10 questions.")
     console.log('')
     console.log(
         "These 10 questions require thinking-outside-the-box, it's improvised programming"
     )
     console.log('')
-    console.log("There's only 1 ticket per question.")
+    console.log(c.red.bold("There's only 1 ticket per question."))
     console.log(
         'Which means that, if someone have answered the question before you, you have to pick another question to answer.'
     )
     console.log('')
     console.log(
-        "The question that is already answered will not appear in the selector list, so you don't have to worry about checking the status all the time."
+        "The question which is already answered will not appear in the selector list, so you don't have to worry about checking the status all the time."
     )
     console.log('')
-    console.log('Now, may the fortune favors the bold, good luck.')
+    console.log('May the fortune favors the bold, good luck.')
+    console.log('')
 
     await waitForEnter()
     console.clear()
