@@ -1,0 +1,13 @@
+{
+    "compilerOptions": {
+        "target": "ES2019",
+        "module": "CommonJS",
+        "lib": ["ESNext", "DOM", "DOM.Iterable"],
+        "strict": true,
+        "moduleResolution": "node",
+        "baseUrl": "src",
+        "esModuleInterop": true,
+        "skipLibCheck": true,
+        "forceConsistentCasingInFileNames": true
+    }
+}
