@@ -92,7 +92,7 @@ const main = async () => {
     )
     console.log('')
     console.log(
-        "Answered questions will not appear in the selector list, so you don't have to worry about checking the status all the time."
+        "Answered questions will be disabled (unselectable), so you don't have to worry about checking the status all the time."
     )
     console.log('')
     console.log('Good luck, and may the fortune favors the bold.')
