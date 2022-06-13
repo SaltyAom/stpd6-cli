@@ -53,29 +53,22 @@ const main = async () => {
     await delay(1.5)
     console.clear()
 
-    let email
-
-    while (!email) {
-        let { email: proposedEmail } = await i.prompt({
-            type: 'input',
-            name: 'email',
-            message:
-                "What's your email? (For ticket recovery process on any accident)"
-        })
-
-        if (
-            /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i.test(
-                proposedEmail
+    const { email } = await i.prompt({
+        type: 'input',
+        name: 'email',
+        validate: (value) => {
+            if (
+                /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i.test(
+                    value
+                )
             )
-        ) {
-            email = proposedEmail
-            break
-        } else {
-            console.log('Please enter valid email')
-            await waitForEnter()
-            console.clear()
-        }
-    }
+                return true
+
+            return 'Please enter a valid email'
+        },
+        message:
+            "What's your email? (For ticket recovery process on any accident)"
+    })
 
     console.clear()
 
@@ -90,7 +83,7 @@ const main = async () => {
     console.log("There's a total of 10 questions.")
     console.log('')
     console.log(
-        "These 10 questions require thinking outside the box, a creative visionary, an essential skill for a good programmer."
+        'These 10 questions require thinking outside the box, a creative visionary, an essential skill for a good programmer.'
     )
     console.log('')
     console.log(c.red.bold("There's only 1 ticket per question."))
@@ -164,9 +157,10 @@ const main = async () => {
 
             const { action } = await i.prompt({
                 message: `Question: ${c.cyan(question.title)}`,
-                type: 'expand',
+                type: 'list',
                 name: 'action',
-                pageSize: 12,
+                askAnswered: true,
+                pageSize: 9,
                 choices: [
                     {
                         key: 'c',
@@ -260,10 +254,9 @@ const main = async () => {
                             console.log(
                                 'For more information, feels free to contact staffs and organizers.'
                             )
-                            console.log('')                            
+                            console.log('')
                             console.log('[Press enter to exit]')
                             console.log('')
-                        
 
                             await waitForEnter()
 
