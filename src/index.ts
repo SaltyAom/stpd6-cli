@@ -32,7 +32,9 @@ const waitForEnter = (query = '') => {
 const delay = (time: number) =>
     new Promise((resolve) => setTimeout(resolve, time * 1000))
 
-const getStatus = (question: number) => fetch(`${server}/s/${question + 1}`)
+const isAllocated = async (question: number) =>
+    (await fetch(`${server}/s/${question + 1}`).then((r) => r.text())) ===
+    'true'
 
 const main = async () => {
     console.clear()
@@ -202,17 +204,17 @@ const main = async () => {
                 case 's':
                     const checkingStatus = ora('Checking Status')
                     checkingStatus.start()
-                    const available = await getStatus(selected)
+                    const allocated = await isAllocated(selected)
                     checkingStatus.stop()
 
                     await i.prompt({
                         name: 'status',
-                        message: available
+                        message: !allocated
                             ? 'No one have completed this question yet'
                             : 'Someone have completed the question, returning to question selector...'
                     })
 
-                    if (!available) viewingQuestion = false
+                    if (allocated) viewingQuestion = false
 
                     break
 
@@ -265,7 +267,9 @@ const main = async () => {
                         )
                         console.log('')
                         console.log(`${c.cyan.bold(ticket)} is your ticket`)
-                        console.log(`Please redeem this code on the eventpop page.`)
+                        console.log(
+                            `Please redeem this code on the eventpop page.`
+                        )
                         console.log('')
                         console.log(
                             "We're pleasured to have an extraordinary talent onboard."
