@@ -199,75 +199,6 @@ const main = async () => {
             })
 
             switch (action) {
-                case 'a':
-                    let answering = true
-                    while (answering) {
-                        console.clear()
-
-                        const { answer } = await i.prompt({
-                            name: 'answer',
-                            message: `What's your answer for "${question.title}" (type "exit" for exit)`
-                        })
-
-                        if (answer === 'exit') {
-                            answering = false
-                            break
-                        }
-
-                        const res = await fetch(`${server}/a/${selected + 1}`, {
-                            method: 'PUT',
-                            headers: {
-                                'content-type': 'application/json'
-                            },
-                            body: JSON.stringify({
-                                from: email,
-                                answer: answer ?? ' '
-                            })
-                        })
-
-                        if (res.status === 200) {
-                            console.log('')
-                            console.log(
-                                c.bold(
-                                    '🥳 Congratulation on your ticket reservation 🎉🎉🎉'
-                                )
-                            )
-                            console.log('')
-                            console.log(
-                                `${c.cyan.bold(
-                                    await res.text()
-                                )} is your ticket`
-                            )
-                            console.log(
-                                `Please redeem this code at eventpop page`
-                            )
-                            console.log('')
-                            console.log(
-                                "We're pleasured to have an extraordinary talent on board."
-                            )
-                            console.log(
-                                `${c.cyan.bold(
-                                    'Welcome to Stupid Hackathon'
-                                )}, and please enjoys the ride.`
-                            )
-                            console.log('')
-                            console.log(
-                                'For more information, feels free to contact staffs and organizers.'
-                            )
-                            console.log('')
-                            console.log('[Press enter to exit]')
-                            console.log('')
-
-                            await waitForEnter()
-
-                            process.exit(0)
-                        } else console.log(await res.text())
-
-                        await waitForEnter()
-                    }
-
-                    break
-
                 case 's':
                     const checkingStatus = ora('Checking Status')
                     checkingStatus.start()
@@ -287,6 +218,76 @@ const main = async () => {
 
                 case 'q':
                     viewingQuestion = false
+                    break
+
+                case 'a':
+                    console.clear()
+
+                    let ticket = ''
+
+                    const { answer } = await i.prompt({
+                        name: 'answer',
+                        message: `What's your answer for "${question.title}" (type "exit" for exit)`,
+                        validate: async (answer) => {
+                            if (answer === 'exit') return true
+
+                            const res = await fetch(
+                                `${server}/a/${selected + 1}`,
+                                {
+                                    method: 'PUT',
+                                    headers: {
+                                        'content-type': 'application/json'
+                                    },
+                                    body: JSON.stringify({
+                                        from: email,
+                                        answer: answer ?? ' '
+                                    })
+                                }
+                            )
+
+                            if (res.status === 200) {
+                                ticket = await res.text()
+                                return true
+                            }
+
+                            return await res.text()
+                        }
+                    })
+
+                    if (ticket) {
+                        console.clear()
+
+                        console.log('')
+                        console.log(
+                            c.bold(
+                                '🥳 Congratulation on your ticket reservation 🎉🎉🎉'
+                            )
+                        )
+                        console.log('')
+                        console.log(`${c.cyan.bold(ticket)} is your ticket`)
+                        console.log(`Please redeem this code on the eventpop page.`)
+                        console.log('')
+                        console.log(
+                            "We're pleasured to have an extraordinary talent onboard."
+                        )
+                        console.log(
+                            `${c.cyan.bold(
+                                'Welcome to Stupid Hackathon'
+                            )}, and please enjoys the ride.`
+                        )
+                        console.log('')
+                        console.log(
+                            'For more information, feels free to contact staffs and organizers.'
+                        )
+                        console.log('')
+                        console.log('[Press enter to exit]')
+                        console.log('')
+
+                        await waitForEnter()
+
+                        process.exit(0)
+                    }
+
                     break
 
                 default:
