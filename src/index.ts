@@ -60,7 +60,7 @@ const main = async () => {
             type: 'input',
             name: 'email',
             message:
-                "What's your email? (For ticket code recovery process on any accident)"
+                "What's your email? (For ticket recovery process on any accident)"
         })
 
         if (
@@ -87,22 +87,24 @@ const main = async () => {
     )
     console.log('')
     console.log('The rule is simple.')
-    console.log("There's total of 10 questions.")
+    console.log("There's a total of 10 questions.")
     console.log('')
     console.log(
-        "These 10 questions require thinking-outside-the-box, it's improvised programming"
+        "These 10 questions require thinking outside the box, a creative visionary, an essential skill for a good programmer."
     )
     console.log('')
     console.log(c.red.bold("There's only 1 ticket per question."))
     console.log(
-        'Which means that, if someone have answered the question before you, you have to pick another question to answer.'
+        'Means that if someone has answered the question before you, you have to pick another question to answer.'
     )
     console.log('')
     console.log(
-        "The question which is already answered will not appear in the selector list, so you don't have to worry about checking the status all the time."
+        "Answered questions will not appear in the selector list, so you don't have to worry about checking the status all the time."
     )
     console.log('')
-    console.log('May the fortune favors the bold, good luck.')
+    console.log('Good luck, and may the fortune favors the bold.')
+    console.log('')
+    console.log('[Press enter to continue]')
     console.log('')
 
     await waitForEnter()
@@ -178,7 +180,7 @@ const main = async () => {
                     },
                     {
                         key: 't',
-                        name: `Answers characters count: ${
+                        name: `Answer's characters count: ${
                             question.length
                         } character${question.length > 1 ? 's' : ''}`,
                         disabled: true
@@ -258,6 +260,10 @@ const main = async () => {
                             console.log(
                                 'For more information, feels free to contact staffs and organizers.'
                             )
+                            console.log('')                            
+                            console.log('[Press enter to exit]')
+                            console.log('')
+                        
 
                             await waitForEnter()
 
